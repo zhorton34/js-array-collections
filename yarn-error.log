@@ -1,0 +1,43 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add underscore
+
+PATH: 
+  /home/zhort/bin:/home/zhort/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin
+
+Yarn version: 
+  1.10.1
+
+Node version: 
+  9.11.2
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/zhort/studio/packages/npm/prototypes/package.json: Unexpected token } in JSON at position 405
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1136:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:98:30)
+      at /usr/share/yarn/lib/cli.js:109:13
+      at <anonymous>
+
+npm manifest: 
+  {
+    "name": "clean-code-studio/prototypes",
+    "version": "1.0.0",
+    "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
+    "main": "src/index.js",
+    "repository": {
+    	"url": "https://github.com/clean-code-studio/prototypes",
+    	"type": "git"
+    },
+    "author": "Zak Horton <zhorton999@gmail.com>",
+    "license": "MIT",
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
