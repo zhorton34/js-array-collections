@@ -1,2 +1,2 @@
-require ('./array.js')
-require('./string.js')
+import './array.js'
+import './string.js'
