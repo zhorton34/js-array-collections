@@ -7,34 +7,39 @@ Taking that into account, most of this package is focused on extending the Array
 
 Example of using the array prototype extensions.
 
-
+```
 let posts = [
    {name: 'Sunday Morning Post', id: 1, length: 9453, readers: 20000, status: 'published'},
    {name: 'asdfasdfsdf', id: 2, length: 945, readers: 100, status: 'published'},
    {name: 'dasdf', id: 3, length: 119453, readers: 420000, status: 'internationally_published'},
    {name: 'Friday Night Lights', id: 4, length: 3343, readers: 1334, status: 'pending'}, 
 ];
-
+```
 
 //Example one - where
-let smallPosts = posts.where('readers', '<=', 100);
+`let smallPosts = posts.where('readers', '<=', 100);`
 
-// small posts = [{name: 'asdfasdfsdf', id: 2, length: 945, readers: 100, status:'published'}]
+// returns `[{name: 'asdfasdfsdf', id: 2, length: 945, readers: 100, status:'published'}]`
 
 
 
 //Example two - pluck property
-let names = post.pluck('names'); 
+`let names = post.pluck('names');`
 
-// names = ['Sunday Morning Post', 'asdfasdfsdf', 'dasdf', 'Friday Night Lights'];
+// returns `['Sunday Morning Post', 'asdfasdfsdf', 'dasdf', 'Friday Night Lights'];`
 
 
 //Example three - chaining several find total reader from published posts
 
-let totalReadersFromActivePosts = posts.where('status', '=', 'published').pluck('readers').sum()
+`let totalReadersFromActivePosts = posts.where('status', '=', 'published').pluck('readers').sum()`
+
+//returns sum of total published posts where status is active 
+
+
 
 //Example four - find the average number of readers where posts are not published
 
-let avgReadersForNonPublishedPosts = posts.where('status', '!=', 'published').pluck('readers').avg()
+`let avgReadersForNonPublishedPosts = posts.where('status', '!=', 'published').pluck('readers').avg()`
 
+//returns avg Number of readers for Non Published Posts
 
