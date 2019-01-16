@@ -19,21 +19,22 @@ let posts = [
 //Example one - where
 `let smallPosts = posts.where('readers', '<=', 100);`
 
-// returns `[{name: 'asdfasdfsdf', id: 2, length: 945, readers: 100, status:'published'}]`
+
+`[{name: 'asdfasdfsdf', id: 2, length: 945, readers: 100, status:'published'}]`
 
 
 
 //Example two - pluck property
 `let names = post.pluck('names');`
 
-// returns `['Sunday Morning Post', 'asdfasdfsdf', 'dasdf', 'Friday Night Lights'];`
+`['Sunday Morning Post', 'asdfasdfsdf', 'dasdf', 'Friday Night Lights'];`
 
 
 //Example three - chaining several find total reader from published posts
 
 `let totalReadersFromActivePosts = posts.where('status', '=', 'published').pluck('readers').sum()`
 
-//returns sum of total published posts where status is active 
+`numberOfReadersAddedUpFromAllPublishedPosts`
 
 
 
@@ -41,5 +42,5 @@ let posts = [
 
 `let avgReadersForNonPublishedPosts = posts.where('status', '!=', 'published').pluck('readers').avg()`
 
-//returns avg Number of readers for Non Published Posts
+`avg Number of readers for Non Published Posts`
 

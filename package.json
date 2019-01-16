@@ -2,12 +2,13 @@
   "name": "javascript-prototypes",
   "version": "1.0.2",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "repository": {
     "url": "https://github.com/clean-code-studio/prototypes",
     "type": "git"
   },
-  "author": "Zak Horton <zhorton999@gmail.com>",
+  "homepage": "https://github.com/clean-code-studio/prototypes",
+  "author": "Zak Horton <zhorton999@gmail.com> (https://zaktechtips.cleancode.studio)",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.11",

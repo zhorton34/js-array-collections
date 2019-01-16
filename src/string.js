@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import $u from 'underscore'
 
-String.prototype.toSnakeCase = function()
+window.String.prototype.toSnakeCase = function()
 {
     if(this.length === 0) return this
     
@@ -10,30 +10,30 @@ String.prototype.toSnakeCase = function()
         .map(x => x.toLowerCase())
         .join('_')
 }
-String.prototype.underscoreSpaces = function()
+window.String.prototype.underscoreSpaces = function()
 {
     if(this.length === 0) return this
     
     return this.replace(/\s/g, '_')
 }
-String.prototype.capitalize = function()
+window.String.prototype.capitalize = function()
 {
     return this.charAt(0).toUpperCase() + this.slice(1)
 }
 
-String.prototype.matches = function(str)
+window.String.prototype.matches = function(str)
 {
     let current = this.slice(0, this.length)
     
     return (current === str)
 }
 
-String.prototype.truncate = function(max_characters)
+window.String.prototype.truncate = function(max_characters)
 {
     return (this.length > max_characters) ? this.substring(0, max_characters) + '...' : this.slice(0, this.length)
 }
 
-String.prototype.empty = function()
+window.String.prototype.empty = function()
 {
     switch (this) {
         case "":
@@ -44,18 +44,18 @@ String.prototype.empty = function()
             return false;
     }
 }
-String.prototype.trim_right  = function() {
+window.String.prototype.trim_right  = function() {
     return this.replace(/\s+$/g, '');
 }
 
-String.prototype.remove_character = function(character)
+window.String.prototype.remove_character = function(character)
 {
     return this.replace(character, "")
 }
-String.prototype.trim_left = function() {
+window.String.prototype.trim_left = function() {
     return this.replace(/^\s+|\s+$/g, '');
 }
 
-String.prototype.trim_both = function() {
+window.String.prototype.trim_both = function() {
     return this.trim_right().trim_left()
 }
