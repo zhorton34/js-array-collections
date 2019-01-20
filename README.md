@@ -6,6 +6,7 @@
 
 By extending prototypes we are able to fluently chain methods together
 
+
 #
 **Examples:**
 ```
@@ -28,6 +29,10 @@ posts.take(3).pluck('name').reverse().listify().truncate(35)
 
 ```
 
+
+**Install**
+1. `yarn add js-collections Or npm install js-collections`
+2. Add  `require('js-collections')` to beginning of entry point for application 
 
 #
 **Array/Collection Methods:**
