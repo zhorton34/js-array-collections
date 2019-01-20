@@ -1,6 +1,6 @@
 {
-  "name": "js-collections",
-  "version": "1.0.5",
+  "name": "js-array-collections",
+  "version": "1.0.6",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
   "main": "dist/js/index.js",
   "files": [
@@ -13,10 +13,10 @@
     "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "repository": {
-    "url": "https://github.com/clean-code-studio/js-collections",
+    "url": "https://github.com/clean-code-studio/js-array-collections",
     "type": "git"
   },
-  "homepage": "https://github.com/clean-code-studio/js-collections",
+  "homepage": "https://github.com/clean-code-studio/js-array-collections",
   "author": "Zak Horton <zhorton999@gmail.com> (https://zaktechtips.cleancode.studio)",
   "license": "MIT",
   "dependencies": {
