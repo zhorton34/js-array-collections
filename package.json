@@ -1,6 +1,6 @@
 {
   "name": "javascript-prototypes",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
   "main": "dist/js/index.js",
   "files": [
