@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import $u from 'underscore'
 
-window.Array.prototype.orderBy = function(property, context = 'asc')
+Array.prototype.orderBy = function(property, context = 'asc')
 {
     if(context === 'asc')
     {
@@ -13,16 +13,16 @@ window.Array.prototype.orderBy = function(property, context = 'asc')
     }
 }
 
-window.Array.prototype.flatten = function()
+Array.prototype.flatten = function()
 {
     return this.concat.apply([], this)
 }
 
-window.Array.prototype.flatPluck = function(property)
+Array.prototype.flatPluck = function(property)
 {
     return this.pluck(property).flatten()
 }
-window.Array.prototype.groupBy = function(property)
+Array.prototype.groupBy = function(property)
 {
     let set = []
     
@@ -36,61 +36,61 @@ window.Array.prototype.groupBy = function(property)
     return set
 }
 
-window.Array.prototype.stringify = function()
+Array.prototype.stringify = function()
 {
     return JSON.stringify(this)
 }
 
-window.Array.prototype.listify = function()
+Array.prototype.listify = function()
 {
     let list = this.join()
     
     return list.replace(/,/g, ', ')
 }
-window.Array.prototype.random = function()
+Array.prototype.random = function()
 {
     return this[Math.floor(Math.random()*this.length)]
 }
 
-window.Array.prototype.orderBy = function(array)
+Array.prototype.orderBy = function(array)
 {
     return _.sortBy(this, array)
 }
-window.Array.prototype.findOrFail = function($property, $condition, $expectation)
+Array.prototype.findOrFail = function($property, $condition, $expectation)
 {
     let subset = this.where($property, $condition, $expectation)
     
     return (subset.length > 0) ? subset : false
 }
 
-window.Array.prototype.each = function(callback)
+Array.prototype.each = function(callback)
 {
     return _.forEach(this, callback)
 }
 
 
-window.Array.prototype.tail = function()
+Array.prototype.tail = function()
 {
     return _.tail(this)
 }
 
-window.Array.prototype.take = function(number)
+Array.prototype.take = function(number)
 {
     return (number > 0) ? this.slice(0, number) : this.reverse().slice(0, number)
 }
 
-window.Array.prototype.first = function()
+Array.prototype.first = function()
 {
     return this[0]
 }
 
-window.Array.prototype.last = function()
+Array.prototype.last = function()
 {
     return this[this.length - 1]
 }
 
 
-window.Array.prototype.where = function(...options)
+Array.prototype.where = function(...options)
 {
     let $loops = 1
     let $property = options[0]
@@ -144,7 +144,7 @@ window.Array.prototype.where = function(...options)
     return subset
 }
 
-window.Array.prototype.when = function(element, $condition, $expectation)
+Array.prototype.when = function(element, $condition, $expectation)
 {
     this.forEach((value) =>
     {
@@ -177,18 +177,18 @@ window.Array.prototype.when = function(element, $condition, $expectation)
     return subset
 }
 
-window.Array.prototype.pluck = function(prop)
+Array.prototype.pluck = function(prop)
 {
     return $u.pluck(this, prop)
 }
 
-window.Array.prototype.unique = function()
+Array.prototype.unique = function()
 {
     return _.uniq(this)
 }
 
 
-window.Array.prototype.append = function(...args)
+Array.prototype.append = function(...args)
 {
     while(args[0] instanceof Array)
     {
@@ -200,7 +200,7 @@ window.Array.prototype.append = function(...args)
     return this
 }
 
-window.Array.prototype.count = function(number = undefined)
+Array.prototype.count = function(number = undefined)
 {
     if(number !== undefined)
         return (this.length === number)
@@ -208,23 +208,23 @@ window.Array.prototype.count = function(number = undefined)
     return this.length
 }
 
-window.Array.prototype.chunk = function(by)
+Array.prototype.chunk = function(by)
 {
     return _.chunk(this, by)
 }
 
-window.Array.prototype.firstWhere = function($property, $condition, $expected)
+Array.prototype.firstWhere = function($property, $condition, $expected)
 {
     
     return this.where($property, $condition, $expected).first()
 }
 
-window.Array.prototype.lastWhere = function($property, $condition, $expected)
+Array.prototype.lastWhere = function($property, $condition, $expected)
 {
     return this.where($property, $condition, $expected).last()
 }
 
-window.Array.prototype.sum = function()
+Array.prototype.sum = function()
 {
     return this.reduce(function(a, b)
     {
@@ -232,7 +232,7 @@ window.Array.prototype.sum = function()
     }, 0)
 }
 
-window.Array.prototype.intersect = function(array)
+Array.prototype.intersect = function(array)
 {
     try
     {
@@ -251,17 +251,17 @@ window.Array.prototype.intersect = function(array)
     }
 }
 
-window.Array.prototype.empty = function()
+Array.prototype.empty = function()
 {
     return (this.length === 0)
 }
 
-window.Array.prototype.lastIndex = function()
+Array.prototype.lastIndex = function()
 {
     return (this.length - 1)
 }
 
-window.Array.prototype.prepend = function(...args)
+Array.prototype.prepend = function(...args)
 {
     
     while(args[0] instanceof Array)
