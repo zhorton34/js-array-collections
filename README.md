@@ -31,8 +31,8 @@ posts.take(3).pluck('name').reverse().listify().truncate(35)
 
 
 **Install**
-1. `yarn add js-collections Or npm install js-collections`
-2. Add  `require('js-collections')` to beginning of entry point for application 
+1. `yarn add js-array-collections Or npm install js-array-collections`
+2. Add  `require('js-array-collections')` to beginning of entry point for application 
 
 #
 **Array/Collection Methods:**
