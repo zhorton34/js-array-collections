@@ -1,20 +1,252 @@
-Javascript Prototypes Extension Package
+###JS Collections Package
 
-The ideas for this package came from closely working with the PHP framework Laravel. My goal was to try to match Laravel's syntax for filtering and sorting through an array of objects. 
+**Purpose:** Extends Javascript Array For Simpler Sorting & Filtering
+**Motiviation:** Laravel Collections
+**Other Package Content:** String Prototype Methods
 
-Taking that into account, most of this package is focused on extending the Array prototype, although there are some methods added onto the String prototype as well.
+By extending prototypes we are able to fluently chain methods together
 
-
-Example of using the array prototype extensions.
-
+#
+**Examples:**
 ```
 let posts = [
-   {name: 'Sunday Morning Post', id: 1, length: 9453, readers: 20000, status: 'published'},
-   {name: 'asdfasdfsdf', id: 2, length: 945, readers: 100, status: 'published'},
-   {name: 'dasdf', id: 3, length: 119453, readers: 420000, status: 'internationally_published'},
+   {name: 'Good Morning Utah', id: 1, length: 9453, readers: 20000, status: 'published'},
+   {name: 'Super Bowl Sunday', id: 2, length: 945, readers: 100, status: 'published'},
+   {name: 'Machine Learning', id: 3, length: 119453, readers: 420000, status: 'internationally_published'},
    {name: 'Friday Night Lights', id: 4, length: 3343, readers: 1334, status: 'pending'}, 
 ];
+
+
+posts.where('readers', '<=', 4500).pluck('status')
+//returns ['published', 'pending']
+
+posts.take(3).pluck('name').reverse().listify()
+// returns 'Machine Learning, Super Bowl Sunday, Good Morning Utah'
+
+posts.take(3).pluck('name').reverse().listify().truncate(35)
+// returns 'Machine Learning, Super Bowl Sunday...'
+
 ```
+
+
+#
+**Array/Collection Methods:**
+
+```
+
+/**
+ *
+ * @param options
+ * @returns {Array}
+ */
+ where(property, condition, value)
+ where([[property, condition, value], [property, condition, value]]) 
+ 
+ 
+/**
+ *
+ * @param property
+ * @param context
+ * @returns {*}
+ */
+orderBy(property, context = 'asc')
+
+
+/**
+ *
+ * @returns {*[]}
+ */
+flatten()
+
+
+/**
+ *
+ * @param property
+ * @returns {*}
+ */
+flatPluck(property)
+
+
+/**
+ *
+ * @param property
+ * @returns {Array}
+ */
+groupBy(property)
+
+
+/**
+ *
+ * @returns {string}
+ */
+stringify()
+
+
+/**
+ *
+ * @returns {string}
+ */
+listify()
+
+
+/**
+ *
+ * @returns {*}
+ */
+random()
+
+
+/**
+ *
+ * @param $property
+ * @param $condition
+ * @param $expectation
+ * @returns {*}
+ */
+where(property, condition, expectation)
+
+
+/**
+ *
+ * @param callback
+ * @returns {Array|Object}
+ */
+each(callback)
+
+
+/**
+ *
+ * @returns {Array}
+ */
+tail()
+
+
+/**
+ *
+ * @param number
+ * @returns {*[]}
+ */
+take(numberOfElements)
+
+
+/**
+ *
+ * @returns {*}
+ */
+first()
+
+
+/**
+ *
+ * @returns {*}
+ */
+last()
+
+
+/**
+ *
+ * @param options
+ * @returns {Array}
+ */
+pluck(prop)
+
+
+/**
+ *
+ * @returns {Array}
+ */
+unique()
+
+
+/**
+ *
+ * @param args
+ * @returns {Array}
+ */
+append(elements)
+
+
+/**
+ *
+ * @param number
+ * @returns {*}
+ */
+count()
+
+
+/**
+ *
+ * @param by
+ * @returns {Array}
+ */
+chunk(byIncrement)
+
+
+/**
+ *
+ * @param $property
+ * @param $condition
+ * @param $expected
+ * @returns {*}
+ */
+firstWhere(property, condition, expectation)
+
+
+/**
+ *
+ * @param $property
+ * @param $condition
+ * @param $expected
+ * @returns {*}
+ */
+lastWhere(property, condition, expectation)
+
+
+/**
+ *
+ * @returns {*|number}
+ */
+sum()
+
+
+/**
+ *
+ * @param array
+ * @returns {*}
+ */
+intersect(array)
+
+
+/**
+ *
+ * @returns {boolean}
+ */
+empty()
+
+
+/**
+ *
+ * @returns {number}
+ */
+lastIndex()
+
+
+/**
+ *
+ * @param args
+ * @returns {Array}
+ */
+prepend(array)
+
+```
+
+
+
+#
+**More Examples:**
+
+```
+
 
 //Example one - where
 `let smallPosts = posts.where('readers', '<=', 100);`
@@ -25,7 +257,7 @@ let posts = [
 
 
 //Example two - pluck property
-`let names = post.pluck('names');`
+`let names = post.pluck('name');`
 
 `['Sunday Morning Post', 'asdfasdfsdf', 'dasdf', 'Friday Night Lights'];`
 
@@ -44,3 +276,4 @@ let posts = [
 
 `avg Number of readers for Non Published Posts`
 
+```

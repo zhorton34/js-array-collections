@@ -1,6 +1,12 @@
 import _ from 'lodash'
 import $u from 'underscore'
 
+/**
+ *
+ * @param property
+ * @param context
+ * @returns {*}
+ */
 Array.prototype.orderBy = function(property, context = 'asc')
 {
     if(context === 'asc')
@@ -13,15 +19,37 @@ Array.prototype.orderBy = function(property, context = 'asc')
     }
 }
 
+
+/**
+ *
+ * @returns {*[]}
+ */
 Array.prototype.flatten = function()
 {
+    
     return this.concat.apply([], this)
+
 }
 
+
+/**
+ *
+ * @param property
+ * @returns {*}
+ */
 Array.prototype.flatPluck = function(property)
 {
+    
     return this.pluck(property).flatten()
+
 }
+
+
+/**
+ *
+ * @param property
+ * @returns {Array}
+ */
 Array.prototype.groupBy = function(property)
 {
     let set = []
@@ -36,26 +64,50 @@ Array.prototype.groupBy = function(property)
     return set
 }
 
+
+/**
+ *
+ * @returns {string}
+ */
 Array.prototype.stringify = function()
 {
+   
     return JSON.stringify(this)
+
 }
 
+
+/**
+ *
+ * @returns {string}
+ */
 Array.prototype.listify = function()
 {
     let list = this.join()
     
     return list.replace(/,/g, ', ')
 }
+
+
+/**
+ *
+ * @returns {*}
+ */
 Array.prototype.random = function()
 {
+    
     return this[Math.floor(Math.random()*this.length)]
+
 }
 
-Array.prototype.orderBy = function(array)
-{
-    return _.sortBy(this, array)
-}
+
+/**
+ *
+ * @param $property
+ * @param $condition
+ * @param $expectation
+ * @returns {*}
+ */
 Array.prototype.findOrFail = function($property, $condition, $expectation)
 {
     let subset = this.where($property, $condition, $expectation)
@@ -63,33 +115,71 @@ Array.prototype.findOrFail = function($property, $condition, $expectation)
     return (subset.length > 0) ? subset : false
 }
 
+
+/**
+ *
+ * @param callback
+ * @returns {Array|Object}
+ */
 Array.prototype.each = function(callback)
 {
+    
     return _.forEach(this, callback)
+
 }
 
 
+/**
+ *
+ * @returns {Array}
+ */
 Array.prototype.tail = function()
 {
+    
     return _.tail(this)
+
 }
 
+
+/**
+ *
+ * @param number
+ * @returns {*[]}
+ */
 Array.prototype.take = function(number)
 {
+    
     return (number > 0) ? this.slice(0, number) : this.reverse().slice(0, number)
+
 }
 
+
+/**
+ *
+ * @returns {*}
+ */
 Array.prototype.first = function()
 {
     return this[0]
 }
 
+/**
+ *
+ * @returns {*}
+ */
 Array.prototype.last = function()
 {
+    
     return this[this.length - 1]
+
 }
 
 
+/**
+ *
+ * @param options
+ * @returns {Array}
+ */
 Array.prototype.where = function(...options)
 {
     let $loops = 1
@@ -144,6 +234,14 @@ Array.prototype.where = function(...options)
     return subset
 }
 
+
+/**
+ *
+ * @param element
+ * @param $condition
+ * @param $expectation
+ * @returns {*}
+ */
 Array.prototype.when = function(element, $condition, $expectation)
 {
     this.forEach((value) =>
@@ -177,17 +275,37 @@ Array.prototype.when = function(element, $condition, $expectation)
     return subset
 }
 
+
+/**
+ *
+ * @param prop
+ * @returns {*}
+ */
 Array.prototype.pluck = function(prop)
 {
+    
     return $u.pluck(this, prop)
+
 }
 
+
+/**
+ *
+ * @returns {Array}
+ */
 Array.prototype.unique = function()
 {
+    
     return _.uniq(this)
+
 }
 
 
+/**
+ *
+ * @param args
+ * @returns {Array}
+ */
 Array.prototype.append = function(...args)
 {
     while(args[0] instanceof Array)
@@ -200,6 +318,12 @@ Array.prototype.append = function(...args)
     return this
 }
 
+
+/**
+ *
+ * @param number
+ * @returns {*}
+ */
 Array.prototype.count = function(number = undefined)
 {
     if(number !== undefined)
@@ -208,22 +332,51 @@ Array.prototype.count = function(number = undefined)
     return this.length
 }
 
+
+/**
+ *
+ * @param by
+ * @returns {Array}
+ */
 Array.prototype.chunk = function(by)
 {
     return _.chunk(this, by)
 }
 
+
+/**
+ *
+ * @param $property
+ * @param $condition
+ * @param $expected
+ * @returns {*}
+ */
 Array.prototype.firstWhere = function($property, $condition, $expected)
 {
     
     return this.where($property, $condition, $expected).first()
 }
 
+
+/**
+ *
+ * @param $property
+ * @param $condition
+ * @param $expected
+ * @returns {*}
+ */
 Array.prototype.lastWhere = function($property, $condition, $expected)
 {
+    
     return this.where($property, $condition, $expected).last()
+
 }
 
+
+/**
+ *
+ * @returns {*|number}
+ */
 Array.prototype.sum = function()
 {
     return this.reduce(function(a, b)
@@ -232,6 +385,12 @@ Array.prototype.sum = function()
     }, 0)
 }
 
+
+/**
+ *
+ * @param array
+ * @returns {*}
+ */
 Array.prototype.intersect = function(array)
 {
     try
@@ -251,16 +410,32 @@ Array.prototype.intersect = function(array)
     }
 }
 
+
+/**
+ *
+ * @returns {boolean}
+ */
 Array.prototype.empty = function()
 {
     return (this.length === 0)
 }
 
+
+/**
+ *
+ * @returns {number}
+ */
 Array.prototype.lastIndex = function()
 {
     return (this.length - 1)
 }
 
+
+/**
+ *
+ * @param args
+ * @returns {Array}
+ */
 Array.prototype.prepend = function(...args)
 {
     
