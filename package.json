@@ -3,6 +3,7 @@
   "version": "1.0.8",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
   "main": "dist/js/index.js",
+  "keywords": ["js", "collections", "filtering", "sorting", "javascript prototypes", "javascript collections", "js collections"],
   "files": [
     "*"
   ],
