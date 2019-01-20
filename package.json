@@ -3,7 +3,9 @@
   "version": "1.0.2",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
   "main": "dist/js/index.js",
-  "files": ["*"],
+  "files": [
+    "*"
+  ],
   "scripts": {
     "dev": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
