@@ -1,6 +1,6 @@
 {
   "name": "js-array-collections",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
   "main": "dist/js/index.js",
   "files": [
