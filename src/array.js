@@ -227,7 +227,7 @@ Array.prototype.where = function(...options)
 
     let conditions = ['=', '!=', '<=', '>=', '<', '>'];
 
-    if($options[2] === undefined || !conditions.includes($condition) || $options[2] === null)
+    if(options[2] === undefined || !conditions.includes($condition) || options[2] === null)
     {
         let $expectation = $condition 
         
