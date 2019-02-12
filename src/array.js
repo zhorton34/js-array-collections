@@ -225,8 +225,9 @@ Array.prototype.where = function(...options)
     let $property = options[0]
     let $condition = options[1]
 
-    $conditions = ['=', '!=', '<=', '>=', '<', '>'];
-    if($options[2] === undefined || !$conditions.includes($condition) || $options[2] === null)
+    let conditions = ['=', '!=', '<=', '>=', '<', '>'];
+
+    if($options[2] === undefined || !conditions.includes($condition) || $options[2] === null)
     {
         let $expectation = $condition 
         
