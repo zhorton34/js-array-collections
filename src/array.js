@@ -19,6 +19,45 @@ Array.prototype.orderBy = function(property, context = 'asc')
     }
 }
 
+/**
+ *
+ * @param property
+ * @param array
+ * @returns {*}
+ */
+Array.prototype.whereIn = function(property, array)
+{
+    let subset = []
+
+    this.forEach((element) => {
+        if(array.includes(element[property]))
+            subset.push(element)
+    })
+
+    return subset 
+}
+
+
+/**
+ *
+ * @param property
+ * @param array
+ * @returns {*}
+ */
+Array.prototype.whereNotIn = function(property, array)
+{
+    let subset = []
+
+    this.forEach((element) => 
+    {
+        if(!array.includes(element[property]))
+            subset.push(element)
+    })
+
+    return subset 
+
+}
+
 
 /**
  *
