@@ -225,24 +225,62 @@ Array.prototype.where = function(...options)
     let $property = options[0]
     let $condition = options[1]
 
-    let conditions = ['=', '!=', '<=', '>=', '<', '>'];
+    let conditions = ['=', '!=', '<=', '>=', '<', '>', '!'];
 
-    if(options[2] === undefined || !conditions.includes($condition) || options[2] === null)
+    if(options[0].constructor !== Array)
     {
-        let $expectation = $condition 
+
+        if(options[2] === "undefined" || !conditions.includes($condition) || options[2] === "null") {
+            let $expectation = $condition 
         
-        $condition = '='
+            $condition = '='
+            $property = options[0]
+        }
+        else {
+            $property = options[0]
+            $condition = options[1]
+            let $expectation = options[2]
+        }
+
+        let subset = []
+        this.forEach((prop) =>
+        {
+            if($condition.includes('!') && $condition.includes('=')) {
+                if (prop[$property] !== $expectation)
+                    subset.push(prop)
+            }
+            else if($condition.includes('=') && $condition.includes('>')) {
+                if (prop[$property] >= $expectation)
+                    subset.push(prop)
+            }
+            else if($condition.includes('=') && $condition.includes('<')) {
+                if (prop[$property] <= $expectation)
+                    subset.push(prop)
+            }
+            else if($condition.includes('=')) {
+                if (prop[$property] === $expectation)
+                    subset.push(prop)
+            }
+            else if($condition.includes('<')) {
+                if (prop[$property] < $expectation)
+                    subset.push(prop)
+            }
+            else if($condition.includes('>')) {
+                if (prop[$property] > $expectation)
+                    subset.push(prop)
+            }
+        })
+
+        return subset
     }
-    else 
+    else
     {
-        let $expectation = options[2]
-    }
-    
-    while(options[0].constructor === Array)
-    {
-        $loops = options.length
+        while(options[0].constructor === Array)
+        {
+            $loops = options.length
         
-        options = options[0]
+            options = options[0]
+        }
     }
     
     let subset = []
