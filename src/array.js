@@ -224,14 +224,15 @@ Array.prototype.where = function(...options)
     let $loops = 1
     let $property = options[0]
     let $condition = options[1]
-
+    let $expectation = options[2]
+    let subset = []
     let conditions = ['=', '!=', '<=', '>=', '<', '>', '!'];
 
     if(options[0].constructor !== Array)
     {
 
         if(options[2] === "undefined" || !conditions.includes($condition) || options[2] === "null") {
-            let $expectation = $condition 
+            $expectation = $condition 
         
             $condition = '='
             $property = options[0]
@@ -239,10 +240,9 @@ Array.prototype.where = function(...options)
         else {
             $property = options[0]
             $condition = options[1]
-            let $expectation = options[2]
+            $expectation = options[2]
         }
 
-        let subset = []
         this.forEach((prop) =>
         {
             if($condition.includes('!') && $condition.includes('=')) {
@@ -282,9 +282,7 @@ Array.prototype.where = function(...options)
             options = options[0]
         }
     }
-    
-    let subset = []
-    
+        
     for(let i = 0; i < $loops; i++)
     {
         $property = options[0]
