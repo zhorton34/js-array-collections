@@ -45,9 +45,39 @@ posts.take(3).pluck('name').reverse().listify().truncate(35)
  * @returns {Array}
  */
  where(property, condition, value)
- where([[property, condition, value], [property, condition, value]]) 
+
+ //short hand to check (property === value)
+ where(property, value) 
  
+
+ whereHas(property, callback)
  
+ //returns students where student.gpa is gpa >= 3.5
+ students.whereHas('gpa', (gpa) => (gpa >= 3.5))
+
+
+whereHasProperty(property, propertyIncludes)
+
+validation = [
+  {
+  	 field: 'name',
+  	 message: 'Name Field Is Required',
+  	 rules: ['required', 'max:255']
+  },
+  {
+  	field: 'email',
+  	message: 'Email Field is Required',
+  	rules: ['email']
+  }
+]
+ 
+
+// validation items WHERE
+// item HAS rules 
+// AND validation[itemIndex].rules
+// INCLUDES required
+// validation.whereHasProperty('rules', ['required'])
+
 /**
  *
  * @param property
