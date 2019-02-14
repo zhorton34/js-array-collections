@@ -22,6 +22,53 @@ Array.prototype.orderBy = function(property, context = 'asc')
 /**
  *
  * @param property
+ * @param callback
+ * @returns {*}
+ */
+Array.prototype.whereHas = function(property, callback)
+{
+    return this.where(property, '!=', null)
+        .where(property, '!=', undefined)
+        .map((item) =>
+        {
+           if(callback(item[property]))
+                return item
+        })
+}
+
+/**
+ *
+ * @param property
+ * @param substring or item in array
+ * @returns {*}
+ */
+Array.prototype.wherePropertyHas = function(property, has)
+{
+    return this.whereHas(property, (item) => item.includes(has))
+}
+           
+
+/**
+ *
+ * @param property
+ * @param context
+ * @returns {*}
+ */
+Array.prototype.orderBy = function(property, context = 'asc')
+{
+    if(context === 'asc')
+    {
+        return _.sortBy(this, property)
+    }
+    else
+    {
+        return _.sortBy(this, property).reverse()
+    }
+}
+
+/**
+ *
+ * @param property
  * @param array
  * @returns {*}
  */
