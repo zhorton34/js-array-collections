@@ -54,13 +54,24 @@ Array.prototype.checkMin = function(limit)
  */
 Array.prototype.whereHas = function(property, callback)
 {
-    return this.where(property, '!=', null)
-        .where(property, '!=', undefined)
-        .map((item) =>
-        {
-           if(callback(item[property]))
-                return item
-        })
+    return this.map((item) => (callback(item[property]) ? item : null))
+               .removeNull()
+}
+
+/**
+ * @return Array
+ */
+Array.prototype.removeUndefined = function()
+{
+    return this.filter((item) => (item !== undefined))
+}
+
+/**
+ * @return Array
+ */
+Array.prototype.removeNull = function()
+{
+    return this.filter((item) => (item !== null))
 }
 
 /**
