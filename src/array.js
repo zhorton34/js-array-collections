@@ -20,6 +20,37 @@ Array.prototype.orderBy = function(property, context = 'asc')
 }
 
 /**
+ * @param {*}
+ * @return Bool
+ */
+
+Array.prototype.doesNotInclude = function(property)
+{
+    return (this.includes(property) === false)
+}
+
+/**
+ * @return Boolean
+ */ 
+Array.prototype.onlyHasUnique = function() 
+{
+    return (this.length === this.unique.length)
+}
+
+Array.prototype.duplicates = function()
+{
+    return this.
+}
+/**
+ * @param Number
+ * @return Boolean
+ */
+Array.prototype.checkMin = function(limit) 
+{
+    return (this.length <= limit)
+}
+
+/**
  *
  * @param property
  * @param callback
