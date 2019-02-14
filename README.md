@@ -72,11 +72,38 @@ validation = [
 ]
  
 
+//
+// Array of objects with array property where array property includes value
+// ========================================================================
+// Each Object has ARRAY property 
+// We only want the objects where the ARRAY property includes given value
+//
+// Real Life Use Case
+//=====================================
+// Validation Of Form Fields
+
+// validation = [ 
+//    { field: 'name', rules: ['max:255'] }, 
+//    { field: 'number', rules: ['required'] }, 
+//    { field: 'email', rules: ['email', 'required'] }
+// ];
+
+// Goal: return Validation Fields where field.rules includes "email"
+// ========================
+//
+//
+// Normal Logic To Achieve GoalImplement
+// ==========================================
 // validation items WHERE
 // item HAS rules 
 // AND validation[itemIndex].rules
 // INCLUDES required
-// validation.whereHasProperty('rules', ['required'])
+//
+// OR 
+//
+// use our whereHasProperty method
+
+validation.whereHasProperty('rules', 'required')
 
 /**
  *
