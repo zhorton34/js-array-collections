@@ -37,10 +37,6 @@ Array.prototype.onlyHasUnique = function()
     return (this.length === this.unique.length)
 }
 
-Array.prototype.duplicates = function()
-{
-    return this.
-}
 /**
  * @param Number
  * @return Boolean

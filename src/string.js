@@ -1,6 +1,23 @@
 import _ from 'lodash'
 
 /**
+ * @return Boolean
+ */
+String.prototype.isDate = function()
+{
+    let expression = /(^\d{1,4}[\.|\\/|-]\d{1,2}[\.|\\/|-]\d{1,4})(\s*(?:0?[1-9]:[0-5]|1(?=[012])\d:[0-5])\d\s*[ap]m)?$/;
+
+    if (toString.call(this) === '[object Date]') 
+        return true;
+
+    if (typeof this.replace === 'function') 
+        this.replace(/^\s+|\s+$/gm, '');
+    
+    return expression.test(this);
+}
+
+
+/**
  * @param Number
  * @return String
  */
@@ -24,7 +41,7 @@ String.prototype.checkMin = function(limit)
  */ 
 String.prototype.checkMax = function(limit) 
 {
-    return (this.length => limit)
+    return (this.length >= limit)
 }  
 
 /**

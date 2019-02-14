@@ -8,6 +8,28 @@ Number.prototype.is = function(number) {
 }
 
 /**
+ * @param Number
+ * @param Number
+ *
+ * @return Bool
+ */
+ Number.prototype.isBetween = function(min, max)
+ {
+		return (this.valueOf() < max && this.valueOf() > min)
+ }
+
+/**
+ * @param Number
+ * @param Number
+ *
+ * @return Bool
+ */
+ Number.prototype.isBetweenOrEquals = function(min, max)
+ {
+ 		return (this.valueOf() <= max && this.valueOf() >= min)
+ }
+
+/**
  * @param Array
  * @return Bool
  */
