@@ -20,6 +20,38 @@ Array.prototype.orderBy = function(property, context = 'asc')
 }
 
 /**
+ *  @param String
+ *  @return {*}
+ */
+Array.prototype.nested = function(string) {
+    let object = this
+    string = string.replace(/\[(\w+)\]/g, '.$1')
+    string = string.replace(/^\./, '')
+    let split = string.split('.')
+    
+    for (let iteration = 0, limit = split.length; iteration < limit; ++iteration) {
+        let key = split[iteration];
+        if (key in object) {
+            object = object[key];
+        } else {
+            return;
+        }
+    }
+    return object;
+}
+
+/**
+ * @param String
+ * @return Array
+*/
+Array.prototype.nestedPluck = function(string) {
+
+    return this.map((item, index) => this.nested(`${index}.${string}`))
+
+}
+
+
+/**
  * @param {*}
  * @return Bool
  */
