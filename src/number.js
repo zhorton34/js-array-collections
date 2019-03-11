@@ -50,8 +50,7 @@ Number.prototype.isItemOneIn = function(array = []) {
  * @return Bool
  */
 Number.prototype.isLastIn = function(array) {
-
-	return (array.length === this.valueOf())
+	return ((array.length - 1) === this.valueOf())
 }
 
 /**
