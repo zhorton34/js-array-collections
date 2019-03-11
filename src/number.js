@@ -49,6 +49,22 @@ Number.prototype.isItemOneIn = function(array = []) {
  * @param Array
  * @return Bool
  */
+Number.prototype.isLengthOf = function(array) {
+	return (array.length === this.valueOf())
+}
+
+/**
+ * @param Array
+ * @return Bool
+ */
+Number.prototype.isNotLastIn = function(array) {
+	return ((array.length - 1) !== this.valueOf())
+}
+
+/**
+ * @param Array
+ * @return Bool
+ */
 Number.prototype.isLastIn = function(array) {
 	return ((array.length - 1) === this.valueOf())
 }
