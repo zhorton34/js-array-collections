@@ -1,95 +1,102 @@
 
-/**
- * @param Number 
- * @return Bool
- */
-Number.prototype.is = function(number) {
-	return (this.valueOf() === number)
-}
+window.Num = function(number) {
 
-/**
- * @param Number
- * @param Number
- *
- * @return Bool
- */
- Number.prototype.isBetween = function(min, max)
- {
-		return (this.valueOf() < max && this.valueOf() > min)
- }
+	$this = number
+	
+	/**
+	 * @param Number 
+	 * @return Bool
+	 */
+	$this.is = function(number) {
+		return ($this.valueOf() === number)
+	}
 
-/**
- * @param Number
- * @param Number
- *
- * @return Bool
- */
- Number.prototype.isBetweenOrEquals = function(min, max)
- {
- 		return (this.valueOf() <= max && this.valueOf() >= min)
- }
+	/**
+	 * @param Number
+	 * @param Number
+	 *
+	 * @return Bool
+	 */
+	 $this.isBetween = function(min, max)
+	 {
+			return ($this.valueOf() < max && $this.valueOf() > min)
+	 }
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.isFirstIn = function(array = []) {
-	return (0 === this.valueOf())
-}
+	/**
+	 * @param Number
+	 * @param Number
+	 *
+	 * @return Bool
+	 */
+	 $this.isBetweenOrEquals = function(min, max)
+	 {
+	 		return ($this.valueOf() <= max && $this.valueOf() >= min)
+	 }
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.isItemOneIn = function(array = []) {
-  return (1 === this.valueOf())
-}
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.isFirstIn = function(array = []) {
+		return (0 === $this.valueOf())
+	}
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.isLengthOf = function(array) {
-	return (array.length === this.valueOf())
-}
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.isItemOneIn = function(array = []) {
+	  return (1 === $this.valueOf())
+	}
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.isNotLastIn = function(array) {
-	return ((array.length - 1) !== this.valueOf())
-}
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.isLengthOf = function(array) {
+		return (array.length === $this.valueOf())
+	}
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.isLastIn = function(array) {
-	return ((array.length - 1) === this.valueOf())
-}
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.isNotLastIn = function(array) {
+		return ((array.length - 1) !== $this.valueOf())
+	}
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.matchesAll = function(array) {
-		let matches = true 
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.isLastIn = function(array) {
+		return ((array.length - 1) === $this.valueOf())
+	}
 
-		array.forEach((num) => 
-		{
-			if(!matches) return 
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.matchesAll = function(array) {
+			let matches = true 
 
-			matches = (this.valueOf() === num)	
-		})
+			array.forEach((num) => 
+			{
+				if(!matches) return 
 
-		return matches 
-}
+				matches = ($this.valueOf() === num)	
+			})
 
-/**
- * @param Array
- * @return Bool
- */
-Number.prototype.matchesAny = function(array) {
-	 return array.includes(this.valueOf())
+			return matches 
+	}
+
+	/**
+	 * @param Array
+	 * @return Bool
+	 */
+	$this.matchesAny = function(array) {
+		 return array.includes($this.valueOf())
+	}
+
+	return $this
 }
