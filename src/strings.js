@@ -1,8 +1,7 @@
 import _ from 'lodash'
 
-window.Str = function(string) {
-
-    $$this = string
+const Stringify = function(string) {
+    $this = string
 
     /**
      * @return Boolean
@@ -287,3 +286,6 @@ window.Str = function(string) {
 
     return $this;
 }
+
+export { Stringify };
+export default { Stringify };

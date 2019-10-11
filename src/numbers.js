@@ -1,5 +1,4 @@
-
-window.Num = function(number) {
+const Numberfy = function(number) {
 
 	$this = number
 	
@@ -100,3 +99,6 @@ window.Num = function(number) {
 
 	return $this
 }
+
+export { Numberfy };
+export default { Numberfy };
