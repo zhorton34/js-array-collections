@@ -1,1 +1,1 @@
-require('./collections.js');
+module.exports.Collect = require('./collections')

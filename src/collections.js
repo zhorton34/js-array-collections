@@ -584,6 +584,6 @@ class ArrayCollection {
     }
 }
 
-function Collect(array) {
+module.exports = function(array) {
     return new ArrayCollection(array)
 }
