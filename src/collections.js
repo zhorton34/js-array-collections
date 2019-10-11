@@ -584,8 +584,6 @@ class ArrayCollection {
     }
 }
 
-export default {
-    Collection: function(array) {
-        return new ArrayCollection(array)
-    }
+function Collect(array) {
+    return new ArrayCollection(array)
 }
