@@ -1,21 +1,72 @@
 ###JS Collections Package
 
-**Purpose:** Extends Javascript Array For Simpler Sorting & Filtering
-**Motiviation:** Laravel Collections
-**Other Package Content:** String Prototype Methods
 
-By extending prototypes we are able to fluently chain methods together
+**Updates**
+"npm install js-array-collections@1.4.4"
+import { Collect, Stringify, Numberfy } from 'js-array-collections'
+
+
+**Collect Extends Array Prototype**
+**Motiviation:** Laravel Collections
+```
+let people = [{ id: 0, name: 'julie' }, { id: 1, name: 'sarah' }, { id: 2, name: 'tim' }];
+
+let collection = Collect(people);
+
+collection.pluck('id') // [0, 1, 2]
+collection.where('id', 0) // [{ id: 0, name: 'julie' }]
+collection.where('id', '>=', 1) // [{ id: 1, name: 'sarah' }, { id: 2, name: 'tim' }]
+collection.firstWhere('name', '=', 'tim') // { id: 2, name: 'tim' }
+
+collection // returns [{ id: 0, name: 'julie' }, { id: 1, name: 'sarah' }, { id: 2, name: 'tim' }]
+
+You can also fluently chain collection methods together
+
+collection.where('id', '=>', 1).where('name', '!=', 'tim').pluck('name') // return ['sarah'] 
+```
+
+
+**Numberfy Extends Number Prototype**
+```
+let totalItems = 5
+
+let total = Numberfy(totalItems);
+
+total.isBetween(3, 6) // returns true
+total.is(3) // returns false
+total.isLastIn([1,2,3]) // returns true
+total.isFirstIn([1,2,3]) // returns false
+total.matchesAny([2, 5, 11, 23, 47, 95]) // returns true
+total.matchesAll([2, 5, 11, 23, 47, 95]) // returns false
+
+total // returns 5
+```
+
+**Stringify Extends String Prototype**
+
+```
+let url = Stringify('https://google.com')
+let badUrl = Stringify('htt://@screweyurl@net')
+
+url.isUrl() // returns true
+badUrl.isUrl() // returns false
+url.isEmail() // returns false
+url.isPhoneNumber() // returns false
+url.trimLeft() // trim white space from left side
+url.truncate(limit = 8, dots = true) // returns htt://@scr...
+url // returns 'https://google.com'
+```
 
 
 #
 **Examples:**
 ```
-let posts = [
+let posts = Collect([
    {name: 'Good Morning Utah', id: 1, length: 9453, readers: 20000, status: 'published'},
    {name: 'Super Bowl Sunday', id: 2, length: 945, readers: 100, status: 'published'},
    {name: 'Machine Learning', id: 3, length: 119453, readers: 420000, status: 'internationally_published'},
    {name: 'Friday Night Lights', id: 4, length: 3343, readers: 1334, status: 'pending'}, 
-];
+]);
 
 
 posts.where('readers', '<=', 4500).pluck('status')
@@ -31,8 +82,8 @@ posts.take(3).pluck('name').reverse().listify().truncate(35)
 
 
 **Install**
-1. `yarn add js-array-collections Or npm install js-array-collections`
-2. Add  `require('js-array-collections')` to beginning of entry point for application 
+1. "npm install js-array-collections@1.4.4"
+2. import { Collect, Stringify, Numberfy } from 'js-array-collections'
 
 #
 **Array/Collection Methods:**
@@ -82,11 +133,11 @@ validation = [
 //=====================================
 // Validation Of Form Fields
 
-// validation = [ 
+// validation = Collect([ 
 //    { field: 'name', rules: ['max:255'] }, 
 //    { field: 'number', rules: ['required'] }, 
 //    { field: 'email', rules: ['email', 'required'] }
-// ];
+// ]);
 
 // Goal: return Validation Fields where field.rules includes "email"
 // ========================
