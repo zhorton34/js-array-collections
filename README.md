@@ -2,7 +2,7 @@
 
 
 **Updates**
-"npm install js-array-collections@1.4.4"
+"npm install js-array-collections@1.4.5"
 import { Collect, Stringify, Numberfy } from 'js-array-collections'
 
 
