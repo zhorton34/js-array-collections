@@ -1,7 +1,7 @@
-import { Stringify, Collect, Numberfy }from '../src/index.js';
+import { Collect, Numberfy, Stringify } from '../dist/js/index.js'
 window.Collect = Collect
-window.Stringify = Stringify
 window.Numberfy = Numberfy
+window.Stringify = Stringify
 
 window.mock = {
 	number: {

@@ -1,6 +1,5 @@
-import Collect from './collections.js';
-import Stringify from './strings.js';
-import Numberfy from './numbers.js';
+var exports=module.exports={};
 
-export { Collect, Numberfy, Stringify}	 
-
+require('./collections.js');
+require('./numbers.js');
+require('./strings.js');

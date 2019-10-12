@@ -583,7 +583,7 @@ class ArrayCollection {
     }
 }
 
-export default function(array) {
+exports.Collect = function(array) {
     return new ArrayCollection(array)
 }
 

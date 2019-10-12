@@ -246,6 +246,6 @@ class Stringify {
     }
 }
 
-export default function(array) {
+exports.Stringify = function(array) {
     return new Stringify(array).string
 }

@@ -1,4 +1,6 @@
-class Numberfy {
+import _ from 'lodash'
+
+class Numberify {
     constructor(number) {
 
     	this.number = Number.prototype
@@ -98,10 +100,11 @@ class Numberfy {
 			 return array.includes(this.valueOf())
 		}
 
-		return this.number = number 
+		return this.number = number
 	}
 }
 
-export default function(number) {
-    return (new Numberfy(number)).number
+exports.Numberfy = function(numerical) {
+    return new Numberify(numerical).number
 }
+
