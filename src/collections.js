@@ -100,7 +100,36 @@ class ArrayCollection {
                 ...item 
             })).removeNull()
         }
-        
+
+        /*
+         * update/map items where conditions are met
+         */
+        this.collection.updateWhere = function (...options) {
+            let updateCallback = options[options.length - 1]
+            let whereConditions = options.slice(0, options.length - 1)
+
+            
+            let subset = [...this]
+            subset = whereConditions.length === 2 
+                ? subset.where(whereConditions[0], whereConditions[1])
+                : subset.where(whereConditions[0], whereConditions[1], whereConditions[2])
+
+
+            return this.reduce((carry, item) => [
+                ...carry,
+                subset.contains(item) ? updateCallback(item) : item
+            ], [])
+        }
+
+
+        /**
+         * @return Boolean
+         * Determine if the item already exists in our collection
+         */
+        this.collection.contains = function(item) {
+            return this.reduce((foundMatch, compareAgainst) => foundMatch ? true : _.isEqual(item, compareAgainst), false)
+        }
+
         /**
          * @return Array
          */
