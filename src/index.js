@@ -1,5 +1,6 @@
-const Collection = require('./collections.js').collection
+import Collect from './collections.js';
+import Stringify from './strings.js';
+import Numberfy from './numbers.js';
 
-export default {
-	Collect: Collection
-}
+export { Collect, Numberfy, Stringify}	 
+

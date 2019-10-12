@@ -1,19 +1,19 @@
 import _ from 'lodash'
 
 class ArrayCollection {
-    constructor(items) {
-        if (!Array.isArray(items)) {
-            window.console.error('Collection is not instanciated from an array: ', items)
+    constructor(collection) {
+        if (!Array.isArray(collection)) {
+            window.console.error('Collection is not instanciated from an array: ', collection)
         }
 
-        this.items = Array.prototype
+        this.collection = Array.prototype
         /**
          *
          * @param property
          * @param context
          * @returns {*}
          */
-        this.items.orderBy = function (property, context = 'asc') {
+        this.collection.orderBy = function (property, context = 'asc') {
             if (context === 'asc') {
                 return _.sortBy(this, property)
             } else {
@@ -25,7 +25,7 @@ class ArrayCollection {
          *  @param String
          *  @return {*}
          */
-        this.items.nested = function (string) {
+        this.collection.nested = function (string) {
             let object = this
             string = string.replace(/\[(\w+)\]/g, '.$1')
             string = string.replace(/^\./, '')
@@ -46,7 +46,7 @@ class ArrayCollection {
          * @param String
          * @return Array
          */
-        this.items.nestedPluck = function (string) {
+        this.collection.nestedPluck = function (string) {
 
             return this.map((item, index) => this.nested(`${index}.${string}`))
 
@@ -58,14 +58,14 @@ class ArrayCollection {
          * @return Bool
          */
 
-        this.items.doesNotInclude = function (property) {
-            return (this.includes(property) === false)
+        this.collection.doesNotIncludeProperty = function (property) {
+            return this.reduce((carry, item) => [...Object.keys(item)], []).includes(property) === false
         }
 
         /**
          * @return Boolean
          */
-        this.items.onlyHasUnique = function () {
+        this.collection.onlyHasUnique = function () {
             return (this.length === this.unique.length)
         }
 
@@ -73,7 +73,7 @@ class ArrayCollection {
          * @param Number
          * @return Boolean
          */
-        this.items.checkMin = function (limit) {
+        this.collection.checkMin = function (limit) {
             return (this.length <= limit)
         }
 
@@ -83,7 +83,7 @@ class ArrayCollection {
          * @param callback
          * @returns {*}
          */
-        this.items.whereHas = function (property, callback) {
+        this.collection.whereHas = function (property, callback) {
             return this.map((item) => (callback(item[property]) ? item : null))
                 .removeNull()
         }
@@ -91,14 +91,14 @@ class ArrayCollection {
         /**
          * @return Array
          */
-        this.items.removeUndefined = function () {
+        this.collection.removeUndefined = function () {
             return this.filter((item) => (item !== undefined))
         }
 
         /**
          * @return Array
          */
-        this.items.removeNull = function () {
+        this.collection.removeNull = function () {
             return this.filter((item) => (item !== null))
         }
 
@@ -108,7 +108,7 @@ class ArrayCollection {
          * @param substring or item in array
          * @returns {*}
          */
-        this.items.wherePropertyHas = function (property, has) {
+        this.collection.wherePropertyHas = function (property, has) {
             return this.whereHas(property, (item) => item.includes(has))
         }
 
@@ -119,7 +119,7 @@ class ArrayCollection {
          * @param context
          * @returns {*}
          */
-        this.items.orderBy = function (property, context = 'asc') {
+        this.collection.orderBy = function (property, context = 'asc') {
             if (context === 'asc') {
                 return _.sortBy(this, property)
             } else {
@@ -133,7 +133,7 @@ class ArrayCollection {
          * @param array
          * @returns {*}
          */
-        this.items.whereIn = function (property, array) {
+        this.collection.whereIn = function (property, array) {
             let subset = []
 
             this.forEach((element) => {
@@ -151,7 +151,7 @@ class ArrayCollection {
          * @param array
          * @returns {*}
          */
-        this.items.whereNotIn = function (property, array) {
+        this.collection.whereNotIn = function (property, array) {
             let subset = []
 
             this.forEach((element) => {
@@ -168,7 +168,7 @@ class ArrayCollection {
          *
          * @returns {*[]}
          */
-        this.items.flatten = function () {
+        this.collection.flatten = function () {
 
             return this.concat.apply([], this)
 
@@ -180,7 +180,7 @@ class ArrayCollection {
          * @param property
          * @returns {*}
          */
-        this.items.flatPluck = function (property) {
+        this.collection.flatPluck = function (property) {
 
             return this.pluck(property).flatten()
 
@@ -192,7 +192,7 @@ class ArrayCollection {
          * @param property
          * @returns {Array}
          */
-        this.items.groupBy = function (property) {
+        this.collection.groupBy = function (property) {
             let set = []
 
             let groups = this.pluck(property).unique()
@@ -209,7 +209,7 @@ class ArrayCollection {
          *
          * @returns {string}
          */
-        this.items.stringify = function () {
+        this.collection.stringify = function () {
 
             return JSON.stringify(this)
 
@@ -220,7 +220,7 @@ class ArrayCollection {
          *
          * @returns {string}
          */
-        this.items.listify = function () {
+        this.collection.listify = function () {
             let list = this.join()
 
             return list.replace(/,/g, ', ')
@@ -231,7 +231,7 @@ class ArrayCollection {
          *
          * @returns {*}
          */
-        this.items.random = function () {
+        this.collection.random = function () {
 
             return this[Math.floor(Math.random() * this.length)]
 
@@ -244,7 +244,7 @@ class ArrayCollection {
          * @param $expectation
          * @returns {*}
          */
-        this.items.findOrFail = function ($property, $condition, $expectation) {
+        this.collection.findOrFail = function ($property, $condition, $expectation) {
             let subset = this.where($property, $condition, $expectation)
 
             return (subset.length > 0) ? subset : false
@@ -256,7 +256,7 @@ class ArrayCollection {
          * @param callback
          * @returns {Array|Object}
          */
-        this.items.each = function (callback) {
+        this.collection.each = function (callback) {
 
             return _.forEach(this, callback)
 
@@ -267,7 +267,7 @@ class ArrayCollection {
          *
          * @returns {Array}
          */
-        this.items.tail = function () {
+        this.collection.tail = function () {
 
             return _.tail(this)
 
@@ -279,7 +279,7 @@ class ArrayCollection {
          * @param number
          * @returns {*[]}
          */
-        this.items.take = function (number) {
+        this.collection.take = function (number) {
 
             return (number > 0) ? this.slice(0, number) : this.reverse().slice(0, number)
 
@@ -290,7 +290,7 @@ class ArrayCollection {
          *
          * @returns {*}
          */
-        this.items.first = function () {
+        this.collection.first = function () {
             return this[0]
         }
 
@@ -298,7 +298,7 @@ class ArrayCollection {
          *
          * @returns {*}
          */
-        this.items.last = function () {
+        this.collection.last = function () {
 
             return this[this.length - 1]
 
@@ -310,7 +310,7 @@ class ArrayCollection {
          * @param options
          * @returns {Array}
          */
-        this.items.where = function (...options) {
+        this.collection.where = function (...options) {
             let $loops = 1
             let $property = options[0]
             let $condition = options[1]
@@ -401,7 +401,7 @@ class ArrayCollection {
          * @param $expectation
          * @returns {*}
          */
-        this.items.when = function (element, $condition, $expectation) {
+        this.collection.when = function (element, $condition, $expectation) {
             this.forEach((value) => {
                 if ($condition.includes('!') && $condition.includes('=')) {
                     if (value !== $expectation)
@@ -433,7 +433,7 @@ class ArrayCollection {
          * @param prop
          * @returns {*}
          */
-        this.items.pluck = function (prop) {
+        this.collection.pluck = function (prop) {
 
             return this.reduce((items, item) => [...items, item[prop]], [])
 
@@ -444,7 +444,7 @@ class ArrayCollection {
          *
          * @returns {Array}
          */
-        this.items.unique = function () {
+        this.collection.unique = function () {
 
             return _.uniq(this)
 
@@ -456,7 +456,7 @@ class ArrayCollection {
          * @param args
          * @returns {Array}
          */
-        this.items.append = function (...args) {
+        this.collection.append = function (...args) {
             while (args[0] instanceof Array) {
                 args = args[0]
             }
@@ -472,7 +472,7 @@ class ArrayCollection {
          * @param number
          * @returns {*}
          */
-        this.items.count = function (number = undefined) {
+        this.collection.count = function (number = undefined) {
             if (number !== undefined)
                 return (this.length === number)
 
@@ -485,7 +485,7 @@ class ArrayCollection {
          * @param by
          * @returns {Array}
          */
-        this.items.chunk = function (by) {
+        this.collection.chunk = function (by) {
             return _.chunk(this, by)
         }
 
@@ -497,7 +497,7 @@ class ArrayCollection {
          * @param $expected
          * @returns {*}
          */
-        this.items.firstWhere = function ($property, $condition, $expected) {
+        this.collection.firstWhere = function ($property, $condition, $expected) {
 
             return this.where($property, $condition, $expected).first()
         }
@@ -510,7 +510,7 @@ class ArrayCollection {
          * @param $expected
          * @returns {*}
          */
-        this.items.lastWhere = function ($property, $condition, $expected) {
+        this.collection.lastWhere = function ($property, $condition, $expected) {
 
             return this.where($property, $condition, $expected).last()
 
@@ -520,7 +520,7 @@ class ArrayCollection {
          *
          * @returns {*|number}
          */
-        this.items.sum = function () {
+        this.collection.sum = function () {
             return this.reduce(function (a, b) {
                 return a + b
             }, 0)
@@ -532,7 +532,7 @@ class ArrayCollection {
          * @param array
          * @returns {*}
          */
-        this.items.intersect = function (array) {
+        this.collection.intersect = function (array) {
             try {
 
                 if (array.length > this.length)
@@ -551,7 +551,7 @@ class ArrayCollection {
          *
          * @returns {boolean}
          */
-        this.items.empty = function () {
+        this.collection.empty = function () {
             return (this.length === 0)
         }
 
@@ -560,7 +560,7 @@ class ArrayCollection {
          *
          * @returns {number}
          */
-        this.items.lastIndex = function () {
+        this.collection.lastIndex = function () {
             return (this.length - 1)
         }
 
@@ -570,7 +570,7 @@ class ArrayCollection {
          * @param args
          * @returns {Array}
          */
-        this.items.prepend = function (...args) {
+        this.collection.prepend = function (...args) {
 
             while (args[0] instanceof Array) {
                 args = args[0]
@@ -579,12 +579,11 @@ class ArrayCollection {
             this.unshift(...args)
         }
 
-        return this.items = items
+        return this.collection = collection
     }
 }
 
-module.exports = {
-    collection: function(array) {
-        return new ArrayCollection(array)
-    }
+export default function(array) {
+    return new ArrayCollection(array)
 }
+

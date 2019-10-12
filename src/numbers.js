@@ -1,104 +1,107 @@
-const Numberfy = function(number) {
+class Numberfy {
+    constructor(number) {
 
-	$this = number
+    	this.number = Number.prototype
 	
-	/**
-	 * @param Number 
-	 * @return Bool
-	 */
-	$this.is = function(number) {
-		return ($this.valueOf() === number)
-	}
+		/**
+		 * @param Number 
+		 * @return Bool
+		 */
+		this.number.is = function(number) {
+			return (this.valueOf() === number)
+		}
 
-	/**
-	 * @param Number
-	 * @param Number
-	 *
-	 * @return Bool
-	 */
-	 $this.isBetween = function(min, max)
-	 {
-			return ($this.valueOf() < max && $this.valueOf() > min)
-	 }
+		/**
+		 * @param Number
+		 * @param Number
+		 *
+		 * @return Bool
+		 */
+		 this.number.isBetween = function(min, max)
+		 {
+				return (this.valueOf() < max && this.valueOf() > min)
+		 }
 
-	/**
-	 * @param Number
-	 * @param Number
-	 *
-	 * @return Bool
-	 */
-	 $this.isBetweenOrEquals = function(min, max)
-	 {
-	 		return ($this.valueOf() <= max && $this.valueOf() >= min)
-	 }
+		/**
+		 * @param Number
+		 * @param Number
+		 *
+		 * @return Bool
+		 */
+		 this.number.isBetweenOrEquals = function(min, max)
+		 {
+		 		return (this.valueOf() <= max && this.valueOf() >= min)
+		 }
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.isFirstIn = function(array = []) {
-		return (0 === $this.valueOf())
-	}
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.isFirstIn = function(array = []) {
+			return (0 === this.valueOf())
+		}
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.isItemOneIn = function(array = []) {
-	  return (1 === $this.valueOf())
-	}
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.isItemOneIn = function(array = []) {
+		  return (1 === this.valueOf())
+		}
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.isLengthOf = function(array) {
-		return (array.length === $this.valueOf())
-	}
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.isLengthOf = function(array) {
+			return (array.length === this.valueOf())
+		}
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.isNotLastIn = function(array) {
-		return ((array.length - 1) !== $this.valueOf())
-	}
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.isNotLastIn = function(array) {
+			return ((array.length - 1) !== this.valueOf())
+		}
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.isLastIn = function(array) {
-		return ((array.length - 1) === $this.valueOf())
-	}
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.isLastIn = function(array) {
+			return ((array.length - 1) === this.valueOf())
+		}
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.matchesAll = function(array) {
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.matchesAll = function(array) {
 			let matches = true 
 
 			array.forEach((num) => 
 			{
 				if(!matches) return 
 
-				matches = ($this.valueOf() === num)	
+				matches = (this.valueOf() === num)	
 			})
 
 			return matches 
-	}
+		}
 
-	/**
-	 * @param Array
-	 * @return Bool
-	 */
-	$this.matchesAny = function(array) {
-		 return array.includes($this.valueOf())
-	}
+		/**
+		 * @param Array
+		 * @return Bool
+		 */
+		this.number.matchesAny = function(array) {
+			 return array.includes(this.valueOf())
+		}
 
-	return $this
+		return this.number = number 
+	}
 }
 
-export { Numberfy };
-export default { Numberfy };
+export default function(number) {
+    return (new Numberfy(number)).number
+}
