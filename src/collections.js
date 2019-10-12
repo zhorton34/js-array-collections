@@ -88,6 +88,19 @@ class ArrayCollection {
                 .removeNull()
         }
 
+
+        /**
+         *
+         * @param property
+         * @param callback
+         * @returns {*}
+         */
+        this.collection.mapWhereHas = function (conditionalCallback, mapperCallback) {
+            return this.map(item => conditionalCallback(item) ? mapperCallback(item) : ({
+                ...item 
+            })).removeNull()
+        }
+        
         /**
          * @return Array
          */
