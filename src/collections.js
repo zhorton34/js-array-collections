@@ -516,7 +516,6 @@ class ArrayCollection {
 
         }
 
-
         /**
          *
          * @returns {*|number}
@@ -584,6 +583,8 @@ class ArrayCollection {
     }
 }
 
-module.exports = function(array) {
-    return new ArrayCollection(array)
+module.exports = {
+    collection: function(array) {
+        return new ArrayCollection(array)
+    }
 }
