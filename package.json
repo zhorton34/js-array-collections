@@ -1,6 +1,6 @@
 {
   "name": "js-array-collections",
-  "version": "1.4.01",
+  "version": "1.4.2",
   "description": "Prototype methods to extend functionality for javascript arrays and strings, mainly focused on array filtering and sorting",
   "main": "dist/js/index.js",
   "keywords": [
@@ -35,7 +35,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
     "cross-env": "^5.2.0",
-    "lodash": "^4.17.11"
+    "lodash": ">=4.17.13"
   },
   "devDependencies": {
     "laravel-mix": "^4.0.14",
