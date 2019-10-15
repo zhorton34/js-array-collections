@@ -7,6 +7,7 @@ class ArrayCollection {
         }
 
         this.collection = Array.prototype
+
         /**
          *
          * @param property
@@ -46,10 +47,9 @@ class ArrayCollection {
          * @param String
          * @return Array
          */
-        this.collection.nestedPluck = function (string) {
-
+        this.collection.nestedPluck = function (string) 
+        {
             return this.map((item, index) => this.nested(`${index}.${string}`))
-
         }
 
 
@@ -58,14 +58,16 @@ class ArrayCollection {
          * @return Bool
          */
 
-        this.collection.doesNotIncludeProperty = function (property) {
+        this.collection.doesNotIncludeProperty = function (property) 
+        {
             return this.reduce((carry, item) => [...Object.keys(item)], []).includes(property) === false
         }
 
         /**
          * @return Boolean
          */
-        this.collection.onlyHasUnique = function () {
+        this.collection.onlyHasUnique = function () 
+        {
             return (this.length === this.unique.length)
         }
 
@@ -73,7 +75,8 @@ class ArrayCollection {
          * @param Number
          * @return Boolean
          */
-        this.collection.checkMin = function (limit) {
+        this.collection.checkMin = function (limit) 
+        {
             return (this.length <= limit)
         }
 
@@ -83,11 +86,53 @@ class ArrayCollection {
          * @param callback
          * @returns {*}
          */
-        this.collection.whereHas = function (property, callback) {
-            return this.map((item) => (callback(item[property]) ? item : null))
-                .removeNull()
+        this.collection.whereHas = function (property, callback) 
+        {
+            return this.map((item) => (callback(item[property]) ? item : null)).removeNull()
         }
 
+        /**
+         * When then otherwise logic object
+         */
+        this.collection.whenThenOtherwise = {
+            when: undefined,
+            then: undefined,
+            otherwise: undefined,
+        }
+
+        /**
+         * When condition
+         */
+        this.collection.when = function (...options) 
+        {
+            let subset = this.where(...options)
+            this.whenThenOtherwise.when = subset
+
+            return this
+        }
+
+        /**
+         * Then callback
+         */
+        this.collection.then = function (callback)
+        {
+            this.whenThenOtherwise.then = callback 
+           
+           return this
+        }
+
+        /**
+         * Otherwise callback
+         */
+        this.collection.otherwise = function (callback)
+        {
+            this.whenThenOtherwise.otherwise = callback
+
+            const { when, then, otherwise } = this.whenThenOtherwise
+
+            this.whenThenOtherwise
+            return this.map(item => when.contains(item) ? then(item) : otherwise(item))
+        }
 
         /**
          *
@@ -95,7 +140,8 @@ class ArrayCollection {
          * @param callback
          * @returns {*}
          */
-        this.collection.mapWhereHas = function (conditionalCallback, mapperCallback) {
+        this.collection.mapWhereHas = function (conditionalCallback, mapperCallback) 
+        {
             return this.map(item => conditionalCallback(item) ? mapperCallback(item) : ({
                 ...item 
             })).removeNull()
@@ -431,40 +477,6 @@ class ArrayCollection {
                     }
                 })
             }
-
-            return subset
-        }
-
-
-        /**
-         *
-         * @param element
-         * @param $condition
-         * @param $expectation
-         * @returns {*}
-         */
-        this.collection.when = function (element, $condition, $expectation) {
-            this.forEach((value) => {
-                if ($condition.includes('!') && $condition.includes('=')) {
-                    if (value !== $expectation)
-                        subset.push(value)
-                } else if ($condition.includes('=') && $condition.includes('>')) {
-                    if (value >= $expectation)
-                        subset.push(value)
-                } else if ($condition.includes('=') && $condition.includes('<')) {
-                    if (value <= $expectation)
-                        subset.push(value)
-                } else if ($condition.includes('=')) {
-                    if (value === $expectation)
-                        subset.push(value)
-                } else if ($condition.includes('<')) {
-                    if (value < $expectation)
-                        subset.push(value)
-                } else if ($condition.includes('>')) {
-                    if (value > $expectation)
-                        subset.push(value)
-                }
-            })
 
             return subset
         }
