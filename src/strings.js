@@ -91,79 +91,68 @@ class Stringify {
         /**
          * @return String
          */
-        this.string.toSnakeCase = function()
+        this.string.snakeCase = function()
         {
-            if(this.length === 0) return this
-            
-            return this
-                .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-                .map(x => x.toLowerCase())
-                .join('_')
+           return _.snakeCase(this)
         }
 
 
         /**
          * @return String
          */
-        this.string.toTextCase = function() 
+        this.string.textCase = function() 
         {
-            return this
+            return _.capitalize(_.lowerCase(this))
         }
 
         /**
          * @return String
          */
-        this.string.toCamelCase = function()
-        {
-            if(this.length === 0) return this
-            
-            return this.toSnakeCase()
-                        .replace(/(\-\w)/g, function(m) 
-                        {
-                            return m[1].toUpperCase();
-                        });
-        }
-
-        /** 
-         * @return String
-         */
-        this.string.replaceUnderscoresForSpaces = function ()
-        {
-
-            return this.underscoreSpaces()
+        this.string.camelCase = function()
+        {            
+            return _.camelCase(this)
         }
 
         /**
          * @return String
          */
-        this.string.underscoreSpaces = function()
-        {
-            if(this.length === 0) return this
-            
-            return this.replace(/\s/g, '_')
-        }
+         this.string.kebabCase = function() 
+         {
+            return _.kebabCase(this)
+         }
+        /**
+         * @return String
+         */
+         this.string.titleCase = function()
+         {
+            return _.startCase(this)
+         }
 
         /**
          * @return String
          */
         this.string.capitalize = function()
         {
-            
-            return this.charAt(0).toUpperCase() + this.slice(1)
-
+            return _.capitalize(this)
         }
 
         /**
-         * @param String
-         *
-         * @return Boolean
+         * @return String
          */
-        this.string.matches = function(string)
-        {
-            let current = this.slice(0, this.length)
-            
-            return (current === string)
-        }
+         this.string.toUpper = function()
+         {
+            return _.toUpper(this)
+         }
+
+         /*
+          * Repeat a string x manyTimes
+          * @return String
+          */
+         this.string.repeat = function(manyTimes)
+         {
+            return _.repeat(this, manyTimes)
+         }
+  
 
         /**
          * @param Number
@@ -178,6 +167,14 @@ class Stringify {
             truncated = (dots) ? truncated + '...' : truncated
 
             return (this.length > limit) ? truncated : this.slice(0, this.length)
+        }
+
+        /*
+         * @return String
+         */
+        this.string.parseInt = function() 
+        {
+            return _.parseInt(this);
         }
 
         /**
@@ -195,54 +192,60 @@ class Stringify {
                     return false;
             }
         }
-
+        
         /**
-         *
-         * @returns {string}
-         */
-        this.string.trimRight  = function()
-        {
-            
-            return this.replace(/\s+$/g, '');
-
-        }
-
-        /**
-         *
-         * @param character
-         * @returns {string}
-         */
-        this.string.removeCharacter = function(character)
-        {
-            
-            return this.replace(character, "")
-
-        }
-
-        /**
-         *
          * @return String
          */
-        this.string.trimLeft = function()
+        this.string.startsWith = function(startsWith = '', startingPosition = 0) 
         {
-            
-            return this.replace(/^\s+|\s+$/g, '');
+            return _.startsWith(this, startsWith, startingPosition);
 
         }
 
         /**
-         *
          * @return String
          */
-        this.string.trimBoth = function()
+        this.string.endsWith = function(endsWith = '', startingPosition = 0) 
         {
-           
-            return this.trimRight().trimLeft()
+            return _.endsWith(this, endsWith, startingPosition);
 
         }
 
+        /*
+         * @return String
+         * Find and replace
+         */
+        this.string.replace = function(find = '', replace = '')
+        {
+            return _.replace(this, find, replace)
+        }
 
-        return this.string = string
+        /*
+         * @return String
+         * Trim start and end of string
+         */
+         this.string.trim = function()
+         {
+            return _.trim(this)
+         }
+         
+        /*
+         * @return String
+         * Trim end
+         */
+         this.string.trimEnd = function()
+         {
+            return _.trimEnd(this)
+         }
+                 
+         /*
+         * @return String
+         * Trim start
+         */
+         this.string.trimStart = function()
+         {
+            return _.trimStart(this)
+         }
     }
 }
 
