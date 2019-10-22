@@ -2,16 +2,16 @@
 
 
 **Updates**
-"npm install js-array-collections@1.4.5"
+"npm install js-array-collections@1.4.7"
 import { Collect, Stringify, Numberfy } from 'js-array-collections'
 
 
 **Collect Extends Array Prototype**
 **Motiviation:** Laravel Collections
 ```
-let people = [{ id: 0, name: 'julie' }, { id: 1, name: 'sarah' }, { id: 2, name: 'tim' }];
+import { Collect } from 'js-array-collections'
 
-let collection = Collect(people);
+let people = Collect([{ id: 0, name: 'julie' }, { id: 1, name: 'sarah' }, { id: 2, name: 'tim' }]);
 
 collection.pluck('id') // [0, 1, 2]
 collection.where('id', 0) // [{ id: 0, name: 'julie' }]
@@ -23,6 +23,22 @@ collection // returns [{ id: 0, name: 'julie' }, { id: 1, name: 'sarah' }, { id:
 You can also fluently chain collection methods together
 
 collection.where('id', '=>', 1).where('name', '!=', 'tim').pluck('name') // return ['sarah'] 
+
+let posts = Collect([
+   { favorites: 350, name: 'Keto cures migraines', author: 'Tommy boy', category: 'Health'  },
+   { favorites: 150, name: 'Vegetarian cures migraines', author: 'Saintenist', category: 'Health'  },
+]);
+
+posts = posts.when('favorites', '>=', 300)
+                       .then(item => ({ ...item, popular: true })
+                       .otherwise(item => ({ ...item, popular: false })       
+
+/* posts returns Collection
+ * [
+ *    { favorites: 350, name: 'Keto cures migraines', author: 'Tommy boy', category: 'Health', popular: true  },
+ *    { favorites: 150, name: 'Vegetarian cures migraines', author: 'Saintenist', category: 'Health' , popular: false },
+ * ]  
+*/           
 ```
 
 
